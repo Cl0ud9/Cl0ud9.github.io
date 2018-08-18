@@ -288,6 +288,288 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://cl0ud9.github.io/2018/08/17/The-basic-knowledges-of-Android/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cl0ud9">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome to Cl0ud9's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/17/The-basic-knowledges-of-Android/" itemprop="url">The Basic knowledges of Android</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-17T16:05:17+08:00">
+                2018-08-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/17/The-basic-knowledges-of-Android/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/08/17/The-basic-knowledges-of-Android/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#<center><font color="#0099ff" face="行书" size="25"><em>The Basic knowledges of Android</em></font></center></p>
+<p></p><h2><font face="行书" color="#EE0000">1.Android平台ELF文件格式<p></p>
+<blockquote>
+<p>谷歌的Android操作系统内核采用Linux内核框架实现，所以Android平台原生文件格式与Linux可执行文件格式完全相似，同属于ELF类型文件。</p>
+</blockquote>
+<blockquote>
+<p>Android平台下游戏逻辑通常使用C、C++语言实现，编译之后的可执行文件属于ELF文件格式</p>
+</blockquote>
+<p></p><h3><font face="华文行楷" color="#050505">ELF文件格式：<p></p>
+<p><img src="/2018/08/17/The-basic-knowledges-of-Android/./The-basic-knowledges-of-Android/1.png"></p>
+<blockquote>
+</blockquote>
+<p>ELF文件头描述文件基本属性信息，包括ELF文件版本号、目标机器型号、程序入口、段表描述信息等信息。ELF文件头数据大小为0x34字节</p>
+<blockquote>
+</blockquote>
+<p>通过工具arm-linux-androideabi-readelf获取的ELF文件头数据如下：</p>
+<p><img src="/2018/08/17/The-basic-knowledges-of-Android/2.png" alt="Alt text"></p>
+<blockquote>
+<p>Magic：表示魔数标志信息，用来指明该文件是一个ELF目标文件，第一个字节固定为“7F”，后面三个字节为E、L、F字母的ASCII数值。同时魔数信息中还包含：版本信息、机器类型、文件类型等。</p>
+<p>Type：表明文件类型，“DYN”表示实例所使用的文件属于动态链接库文件。</p>
+<p>Machine：标识文件所采用指令类型，“ARM“表示当前ELF采用Arm指令集。</p>
+<p>Start of program headers：表示程序头信息的起始偏移。        </p>
+<p>Start of section headers： 表示节表头信息的起始。                                 </p>
+<p>Size of program headers：表示程序头信息总共大小。      </p>
+<p>Number of program headers：表示程序头信息总共包含的项数。         </p>
+<p>Size of section headers： 表示节表头信息总共大小。      </p>
+<p>Number of section headers： 表示节表头信息总共包含的项数</p>
+</blockquote>
+<p></p><h2><font face="行书"><font color="#EE0000">2.ELF文件程序头信息：<p></p>
+<blockquote>
+<p>ELF文件程序头信息（program headers）是一个数据结构，每个数据结构描述一个段或者系统准备程序执行所需的其他信息，ELF文件的段（Segment）包含一个或者多个节区（Section）。ELF文件的段是为方便操作系统根据相同权限区段合并到一个段进行映射。</p>
+</blockquote>
+<p><img src="/2018/08/17/The-basic-knowledges-of-Android/3.png" alt="Alt text"></p>
+<blockquote>
+<p>每个段的FLg表示可获取到段对应的内存属性。实际上真正需要装载到内存中的只有类型为“LOAD”的段，即：只有第2个和第3个需要装载到内存中，并且还可以看到每一个段的起始文件偏移地址、起始内存偏移地址、段大小、段权限、段对齐方式等信息。</p>
+</blockquote>
+<p></p><h2><font face="行书"><font color="#EE0000">3.ELF文件节表头信息：<p></p>
+<blockquote>
+<p>从节表头信息可获取到每个节段名字、长度、内存和文件的相对偏移、链接器、编译器、装载器等信息。实例样本总共有21个阶段，其中“.text”属于出现频率非常高的节段，绝大部分代码编译之后存放于“.text”段中。</p>
+</blockquote>
+<p><img src="/2018/08/17/The-basic-knowledges-of-Android/4.png" alt="Alt text"></p>
+<blockquote>
+<p>ELF文件格式主要由以上介绍的三部分信息组成，分别为：ELF文件头、ELF程序头、ELF节表头。</p>
+</blockquote>
+<p></p><h2><font face="行书"><font color="#EE0000">4.Arm处理器寄存器：<p></p>
+<blockquote>
+<p>ARM处理器共有37个寄存器。其中包括：31个通用寄存器，包括程序计数器(PC)在内。这些寄存器都是32位寄存器。以及6个32位状态寄存器。但目前只使用了其中12位。ARM处理器共有7种不同的处理器模式，在每一种处理器模式中有一组相应的寄存器组。任意时刻(也就是任意的处理器模式下)，可见的寄存器包括15个通用寄存器(R0～R14)、一个或两个状态寄存器及程序计数器(PC)。在所有的寄存器中，有些是各模式共用的同一个物理寄存器；有一些寄存器是各模式自己拥有的独立的物理寄存器。一般可见的寄存器只有15个加上程序状态寄存器（CPSR） </p>
+</blockquote>
+<blockquote>
+<p>通用寄存器主要分为三类：未备份寄存器（R0-R7），备份寄存器(R8-R14)和程序计数器(R15)。</p>
+</blockquote>
+<p></p><h3><font face="华文行楷" color="#050505">a.未备份寄存器（R0-R7）：<p></p>
+<blockquote>
+<p>对于每一个未备份寄存器在所有处理器模式下都可以使用，因为它并没有被系统设置于特别的用途。</p>
+</blockquote>
+<p></p><h3><font face="华文行楷" color="#050505">b.备份寄存器（R8-R14）：<p></p>
+<blockquote>
+<p>在备份寄存器中，R13也被称为SP寄存器即栈寄存器，用于分配内存中的栈空间。</p>
+</blockquote>
+<p></p><h3><font face="华文行楷" color="#050505">c.程序计数器即PC寄存器(R15)：<p></p>
+<blockquote>
+<p>此寄存器存储了当前执行指令的下两条指令，值为当前指令地址加8个字节。</p>
+</blockquote>
+<p></p><h3><font face="华文行楷" color="#050505">d.程序状态寄存器（CPSR）：<p></p>
+<blockquote>
+<p>它可以在任何处理器模式下被访问，它包含了条件标志位、中断禁止位、当前处理器模式标志以及其他的一些控制和状态位。当处理器发生特殊的异常中断时，会把当前程序状态寄存器的内容放到备用程序状态寄存器中即（SPSR），在异常中断结束后，可通过SPSR来恢复CPSR。<br>CPSR中的控制位：CPSR的低8位I、F、T及M[4：0]统称为控制位。当异常中断发生时这些位发生变化。这里T控制位用于控制指令执行的状态，即说明指令是ARM指令还是Thumb指令，0表示执行ARM指令，1表示执行Thumb指令。对于一些高版本的非T系列处理器1表示强制下一条执行的指令产生未定义指令中断。</p>
+</blockquote>
+<p></p><h3><font face="华文行楷">ARM CPU有15个通用寄存器，分别编号为R0~R15。其中R13也叫SP，用于保存栈顶地址；R14也叫LR，用于保存函数的返回地址；R15也叫PC，由于ARM架构的指令预读，实际运行时PC寄存器并不指向当前执行的指令，而是指向当前指令地址加8处。<p></p>
+<p></p><h2><font face="行书"><font color="#EE0000">5.B/BL 指令 ：常用指令，用于跳转到指定位置<p></p>
+<blockquote>
+<p>B：跳转到指定地址执行</p>
+</blockquote>
+<blockquote>
+<p>BL: 跳转到子程序执行并且可返回</p>
+</blockquote>
+<blockquote>
+<p>BX：跳转到指定地址执行并且可切换指令状态如THUMB或者ARM指令集</p>
+</blockquote>
+<blockquote>
+<p>BLX：跳转到子程序执行可返回也可切换指令状态</p>
+</blockquote>
+<p><img src="/2018/08/17/The-basic-knowledges-of-Android/5.png" alt="Alt text"></p>
+<blockquote>
+<p>如果R2==R0 则跳转到0x1C04<br>这里指令为 BEQ loc_1C04 对应十六进制为:0B 00 00 0A二进制为：0000 1010 0000 0000 0000 0000 0000 1011<br>它的二进制解释图如下：</p>
+</blockquote>
+<p><img src="/2018/08/17/The-basic-knowledges-of-Android/6.png" alt="Alt text"></p>
+<blockquote>
+<p>Offset是目标地址与该指令的相对偏移（需要考虑到CPU的指令预读，以及左移两位，偏移是按4字节对齐的）</p>
+</blockquote>
+<blockquote>
+<p>Offset是1011，左移两位就是101100，也就是0x2C。当CPU执行到该指令时（0x1BD0处），PC应该指向0x1BD8，所以实际跳转地址就是0x1BD8+0x2C，也就是0x1C04</p>
+</blockquote>
+<p></p><h2><font face="行书"><font color="#EE0000">6.LDR/STR 指令：常用指令，用于向内存读/写数据<p></p>
+<p><img src="/2018/08/17/The-basic-knowledges-of-Android/7.png" alt="Alt text"></p>
+<blockquote>
+<p>对应十六进制：00 20 9C E5</p>
+</blockquote>
+<blockquote>
+<p>按二进制从高位到低位展开：</p>
+</blockquote>
+<blockquote>
+<p>1110 0101 1001 1100 0010 0000 0000 0000</p>
+</blockquote>
+<blockquote>
+<p>二进制解释图如下：</p>
+</blockquote>
+<p><img src="/2018/08/17/The-basic-knowledges-of-Android/8.png" alt="Alt text"></p>
+<blockquote>
+<p>Cond表示任何条件都可以（ARM7-TDMI-manual-pt2.pdf的4-5页）。</p>
+</blockquote>
+<blockquote>
+<p>01是指令标识。</p>
+</blockquote>
+<blockquote>
+<p>I是0，表示offset是一个立即数。</p>
+</blockquote>
+<blockquote>
+<p>B是0，表示传输的是一个字，ARM指令集中的“字”是8个字节。</p>
+</blockquote>
+<blockquote>
+<p>L是1，表示是读内存。</p>
+</blockquote>
+<blockquote>
+<p>Rn是0xC，表示基址寄存器是R12.</p>
+</blockquote>
+<blockquote>
+<p>Rd是2，表示把内存值读到R2。</p>
+</blockquote>
+<blockquote>
+<p>Offset是0，表示基址寄存器需要加上0.</p>
+</blockquote>
+<p></p><h2><font face="行书"><font color="#EE0000">7.THUMB指令集<p></p>
+<p><img src="/2018/08/17/The-basic-knowledges-of-Android/9.png" alt="Alt text"></p>
+<blockquote>
+<p>State bit ：1为THUMB指令集，0为ARM指令集</p>
+</blockquote>
+<p></p><h2><font face="行书"><font color="#EE0000">8.浮点数在内存中的形式<p></p>
+<blockquote>
+<p>32位浮点数的二进制格式：</p>
+</blockquote>
+<p><img src="/2018/08/17/The-basic-knowledges-of-Android/10.png" alt="Alt text"></p>
+<blockquote>
+<p>S：符号位 0位正数，1为负数</p>
+</blockquote>
+<blockquote>
+<p>Exp：指数位，值=实际指数值+偏正值（32位下通常等于127，64位通常等于1023）<br>偏正值：为了消除符号对大小比较的影响，则均采用无符号的正数值存储数据。</p>
+</blockquote>
+<blockquote>
+<p>Fraction：二进制小数位，即有效数字，从小数点往右开始。整数部分恒为1<br>计算公式：(S) F*2^E </p>
+</blockquote>
+</font></font></h2></font></font></h2></font></font></h2></font></font></h2></font></h3></font></h3></font></h3></font></h3></font></h3></font></font></h2></font></font></h2></font></font></h2></font></h3></font></h2>
+          
+        
+      
+    </div>
+    
+    
+    
+    <div>
+     
+    </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://cl0ud9.github.io/2018/02/24/PHP-common-vulnerability-of-functions/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -446,288 +728,6 @@
 </blockquote>
 <p></p><h2><font face="行书"><center>The end <p></p>
 </center></font></h2></font></h3></font></h2></font></h3></font></h3></font></h2></font></h3></font></h2></font></h3></font></h2></font></h3></font></h2></font></h3></font></h2></font></h3></font></h2></font></h3></font></h3></font></h2></font></h3></font></h2></font></h3></font></h3></font></h2>
-          
-        
-      
-    </div>
-    
-    
-    
-    <div>
-     
-    </div>
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cl0ud9.github.io/2018/02/24/The-basic-knowledges-of-Android/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Cl0ud9">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Welcome to Cl0ud9's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/24/The-basic-knowledges-of-Android/" itemprop="url">The Basic knowledges of Android</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-24T20:21:10+08:00">
-                2018-02-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/24/The-basic-knowledges-of-Android/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/24/The-basic-knowledges-of-Android/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>#<center><font color="#0099ff" face="行书" size="25"><em>The Basic knowledges of Android</em></font></center></p>
-<p></p><h2><font face="行书" color="#EE0000">1.Android平台ELF文件格式<p></p>
-<blockquote>
-</blockquote>
-<p>谷歌的Android操作系统内核采用Linux内核框架实现，所以Android平台原生文件格式与Linux可执行文件格式完全相似，同属于ELF类型文件。</p>
-<blockquote>
-</blockquote>
-<p>Android平台下游戏逻辑通常使用C、C++语言实现，编译之后的可执行文件属于ELF文件格式</p>
-<p></p><h3><font face="华文行楷" color="#050505">ELF文件格式：<p></p>
-<p><img src="The-basic-knowledges-of-Android/1.png" alt="Alt text"></p>
-<blockquote>
-</blockquote>
-<p>ELF文件头描述文件基本属性信息，包括ELF文件版本号、目标机器型号、程序入口、段表描述信息等信息。ELF文件头数据大小为0x34字节</p>
-<blockquote>
-</blockquote>
-<p>通过工具arm-linux-androideabi-readelf获取的ELF文件头数据如下：</p>
-<p><img src="The-basic-knowledges-of-Android/2.png" alt="Alt text"></p>
-<blockquote>
-<p>Magic：表示魔数标志信息，用来指明该文件是一个ELF目标文件，第一个字节固定为“7F”，后面三个字节为E、L、F字母的ASCII数值。同时魔数信息中还包含：版本信息、机器类型、文件类型等。</p>
-<p>Type：表明文件类型，“DYN”表示实例所使用的文件属于动态链接库文件。</p>
-<p>Machine：标识文件所采用指令类型，“ARM“表示当前ELF采用Arm指令集。</p>
-<p>Start of program headers：表示程序头信息的起始偏移。        </p>
-<p>Start of section headers： 表示节表头信息的起始。                                 </p>
-<p>Size of program headers：表示程序头信息总共大小。      </p>
-<p>Number of program headers：表示程序头信息总共包含的项数。         </p>
-<p>Size of section headers： 表示节表头信息总共大小。      </p>
-<p>Number of section headers： 表示节表头信息总共包含的项数</p>
-</blockquote>
-<p></p><h2><font face="行书"><font color="#EE0000">2.ELF文件程序头信息：<p></p>
-<blockquote>
-<p>ELF文件程序头信息（program headers）是一个数据结构，每个数据结构描述一个段或者系统准备程序执行所需的其他信息，ELF文件的段（Segment）包含一个或者多个节区（Section）。ELF文件的段是为方便操作系统根据相同权限区段合并到一个段进行映射。</p>
-</blockquote>
-<p><img src="The-basic-knowledges-of-Android/3.png" alt="Alt text"></p>
-<blockquote>
-<p>每个段的FLg表示可获取到段对应的内存属性。实际上真正需要装载到内存中的只有类型为“LOAD”的段，即：只有第2个和第3个需要装载到内存中，并且还可以看到每一个段的起始文件偏移地址、起始内存偏移地址、段大小、段权限、段对齐方式等信息。</p>
-</blockquote>
-<p></p><h2><font face="行书"><font color="#EE0000">3.ELF文件节表头信息：<p></p>
-<blockquote>
-<p>从节表头信息可获取到每个节段名字、长度、内存和文件的相对偏移、链接器、编译器、装载器等信息。实例样本总共有21个阶段，其中“.text”属于出现频率非常高的节段，绝大部分代码编译之后存放于“.text”段中。</p>
-</blockquote>
-<p><img src="The-basic-knowledges-of-Android/4.png" alt="Alt text"></p>
-<blockquote>
-<p>ELF文件格式主要由以上介绍的三部分信息组成，分别为：ELF文件头、ELF程序头、ELF节表头。</p>
-</blockquote>
-<p></p><h2><font face="行书"><font color="#EE0000">4.Arm处理器寄存器：<p></p>
-<blockquote>
-<p>ARM处理器共有37个寄存器。其中包括：31个通用寄存器，包括程序计数器(PC)在内。这些寄存器都是32位寄存器。以及6个32位状态寄存器。但目前只使用了其中12位。ARM处理器共有7种不同的处理器模式，在每一种处理器模式中有一组相应的寄存器组。任意时刻(也就是任意的处理器模式下)，可见的寄存器包括15个通用寄存器(R0～R14)、一个或两个状态寄存器及程序计数器(PC)。在所有的寄存器中，有些是各模式共用的同一个物理寄存器；有一些寄存器是各模式自己拥有的独立的物理寄存器。一般可见的寄存器只有15个加上程序状态寄存器（CPSR） </p>
-</blockquote>
-<blockquote>
-<p>通用寄存器主要分为三类：未备份寄存器（R0-R7），备份寄存器(R8-R14)和程序计数器(R15)。</p>
-</blockquote>
-<p></p><h3><font face="华文行楷" color="#050505">a.未备份寄存器（R0-R7）：<p></p>
-<blockquote>
-<p>对于每一个未备份寄存器在所有处理器模式下都可以使用，因为它并没有被系统设置于特别的用途。</p>
-</blockquote>
-<p></p><h3><font face="华文行楷" color="#050505">b.备份寄存器（R8-R14）：<p></p>
-<blockquote>
-<p>在备份寄存器中，R13也被称为SP寄存器即栈寄存器，用于分配内存中的栈空间。</p>
-</blockquote>
-<p></p><h3><font face="华文行楷" color="#050505">c.程序计数器即PC寄存器(R15)：<p></p>
-<blockquote>
-<p>此寄存器存储了当前执行指令的下两条指令，值为当前指令地址加8个字节。</p>
-</blockquote>
-<p></p><h3><font face="华文行楷" color="#050505">d.程序状态寄存器（CPSR）：<p></p>
-<blockquote>
-<p>它可以在任何处理器模式下被访问，它包含了条件标志位、中断禁止位、当前处理器模式标志以及其他的一些控制和状态位。当处理器发生特殊的异常中断时，会把当前程序状态寄存器的内容放到备用程序状态寄存器中即（SPSR），在异常中断结束后，可通过SPSR来恢复CPSR。<br>CPSR中的控制位：CPSR的低8位I、F、T及M[4：0]统称为控制位。当异常中断发生时这些位发生变化。这里T控制位用于控制指令执行的状态，即说明指令是ARM指令还是Thumb指令，0表示执行ARM指令，1表示执行Thumb指令。对于一些高版本的非T系列处理器1表示强制下一条执行的指令产生未定义指令中断。</p>
-</blockquote>
-<p></p><h3><font face="华文行楷">ARM CPU有15个通用寄存器，分别编号为R0~R15。其中R13也叫SP，用于保存栈顶地址；R14也叫LR，用于保存函数的返回地址；R15也叫PC，由于ARM架构的指令预读，实际运行时PC寄存器并不指向当前执行的指令，而是指向当前指令地址加8处。<p></p>
-<p></p><h2><font face="行书"><font color="#EE0000">5.B/BL 指令 ：常用指令，用于跳转到指定位置<p></p>
-<blockquote>
-<p>B：跳转到指定地址执行</p>
-</blockquote>
-<blockquote>
-<p>BL: 跳转到子程序执行并且可返回</p>
-</blockquote>
-<blockquote>
-<p>BX：跳转到指定地址执行并且可切换指令状态如THUMB或者ARM指令集</p>
-</blockquote>
-<blockquote>
-<p>BLX：跳转到子程序执行可返回也可切换指令状态</p>
-</blockquote>
-<p><img src="The-basic-knowledges-of-Android/5.png" alt="Alt text"></p>
-<blockquote>
-<p>如果R2==R0 则跳转到0x1C04<br>这里指令为 BEQ loc_1C04 对应十六进制为:0B 00 00 0A二进制为：0000 1010 0000 0000 0000 0000 0000 1011<br>它的二进制解释图如下：</p>
-</blockquote>
-<p><img src="The-basic-knowledges-of-Android/6.png" alt="Alt text"></p>
-<blockquote>
-<p>Offset是目标地址与该指令的相对偏移（需要考虑到CPU的指令预读，以及左移两位，偏移是按4字节对齐的）</p>
-</blockquote>
-<blockquote>
-<p>Offset是1011，左移两位就是101100，也就是0x2C。当CPU执行到该指令时（0x1BD0处），PC应该指向0x1BD8，所以实际跳转地址就是0x1BD8+0x2C，也就是0x1C04</p>
-</blockquote>
-<p></p><h2><font face="行书"><font color="#EE0000">6.LDR/STR 指令：常用指令，用于向内存读/写数据<p></p>
-<p><img src="The-basic-knowledges-of-Android/7.png" alt="Alt text"></p>
-<blockquote>
-<p>对应十六进制：00 20 9C E5</p>
-</blockquote>
-<blockquote>
-<p>按二进制从高位到低位展开：</p>
-</blockquote>
-<blockquote>
-<p>1110 0101 1001 1100 0010 0000 0000 0000</p>
-</blockquote>
-<blockquote>
-<p>二进制解释图如下：</p>
-</blockquote>
-<p><img src="The-basic-knowledges-of-Android/8.png" alt="Alt text"></p>
-<blockquote>
-<p>Cond表示任何条件都可以（ARM7-TDMI-manual-pt2.pdf的4-5页）。</p>
-</blockquote>
-<blockquote>
-<p>01是指令标识。</p>
-</blockquote>
-<blockquote>
-<p>I是0，表示offset是一个立即数。</p>
-</blockquote>
-<blockquote>
-<p>B是0，表示传输的是一个字，ARM指令集中的“字”是8个字节。</p>
-</blockquote>
-<blockquote>
-<p>L是1，表示是读内存。</p>
-</blockquote>
-<blockquote>
-<p>Rn是0xC，表示基址寄存器是R12.</p>
-</blockquote>
-<blockquote>
-<p>Rd是2，表示把内存值读到R2。</p>
-</blockquote>
-<blockquote>
-<p>Offset是0，表示基址寄存器需要加上0.</p>
-</blockquote>
-<p></p><h2><font face="行书"><font color="#EE0000">7.THUMB指令集<p></p>
-<p><img src="The-basic-knowledges-of-Android/9.png" alt="Alt text"></p>
-<blockquote>
-<p>State bit ：1为THUMB指令集，0为ARM指令集</p>
-</blockquote>
-<p></p><h2><font face="行书"><font color="#EE0000">8.浮点数在内存中的形式<p></p>
-<blockquote>
-<p>32位浮点数的二进制格式：</p>
-</blockquote>
-<p><img src="The-basic-knowledges-of-Android/10.png" alt="Alt text"></p>
-<blockquote>
-<p>S：符号位 0位正数，1为负数</p>
-</blockquote>
-<blockquote>
-<p>Exp：指数位，值=实际指数值+偏正值（32位下通常等于127，64位通常等于1023）<br>偏正值：为了消除符号对大小比较的影响，则均采用无符号的正数值存储数据。</p>
-</blockquote>
-<blockquote>
-<p>Fraction：二进制小数位，即有效数字，从小数点往右开始。整数部分恒为1<br>计算公式：(S) F*2^E </p>
-</blockquote>
-</font></font></h2></font></font></h2></font></font></h2></font></font></h2></font></h3></font></h3></font></h3></font></h3></font></h3></font></font></h2></font></font></h2></font></font></h2></font></h3></font></h2>
           
         
       

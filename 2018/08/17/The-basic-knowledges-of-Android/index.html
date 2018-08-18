@@ -115,29 +115,29 @@
 
 
 
-<meta name="description" content="#The Basic knowledges of Android 1.Android平台ELF文件格式   谷歌的Android操作系统内核采用Linux内核框架实现，所以Android平台原生文件格式与Linux可执行文件格式完全相似，同属于ELF类型文件。   Android平台下游戏逻辑通常使用C、C++语言实现，编译之后的可执行文件属于ELF文件格式 ELF文件格式：    ELF文件头描">
+<meta name="description" content="#The Basic knowledges of Android 1.Android平台ELF文件格式  谷歌的Android操作系统内核采用Linux内核框架实现，所以Android平台原生文件格式与Linux可执行文件格式完全相似，同属于ELF类型文件。   Android平台下游戏逻辑通常使用C、C++语言实现，编译之后的可执行文件属于ELF文件格式  ELF文件格式：    ELF文件头描">
 <meta name="keywords" content="study">
 <meta property="og:type" content="article">
 <meta property="og:title" content="The Basic knowledges of Android">
-<meta property="og:url" content="https://cl0ud9.github.io/2018/02/24/The-basic-knowledges-of-Android/index.html">
+<meta property="og:url" content="https://cl0ud9.github.io/2018/08/17/The-basic-knowledges-of-Android/index.html">
 <meta property="og:site_name" content="Welcome to Cl0ud9&#39;s blog">
-<meta property="og:description" content="#The Basic knowledges of Android 1.Android平台ELF文件格式   谷歌的Android操作系统内核采用Linux内核框架实现，所以Android平台原生文件格式与Linux可执行文件格式完全相似，同属于ELF类型文件。   Android平台下游戏逻辑通常使用C、C++语言实现，编译之后的可执行文件属于ELF文件格式 ELF文件格式：    ELF文件头描">
+<meta property="og:description" content="#The Basic knowledges of Android 1.Android平台ELF文件格式  谷歌的Android操作系统内核采用Linux内核框架实现，所以Android平台原生文件格式与Linux可执行文件格式完全相似，同属于ELF类型文件。   Android平台下游戏逻辑通常使用C、C++语言实现，编译之后的可执行文件属于ELF文件格式  ELF文件格式：    ELF文件头描">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://cl0ud9.github.io/2018/02/24/The-basic-knowledges-of-Android/The-basic-knowledges-of-Android/1.png">
-<meta property="og:image" content="https://cl0ud9.github.io/2018/02/24/The-basic-knowledges-of-Android/The-basic-knowledges-of-Android/2.png">
-<meta property="og:image" content="https://cl0ud9.github.io/2018/02/24/The-basic-knowledges-of-Android/The-basic-knowledges-of-Android/3.png">
-<meta property="og:image" content="https://cl0ud9.github.io/2018/02/24/The-basic-knowledges-of-Android/The-basic-knowledges-of-Android/4.png">
-<meta property="og:image" content="https://cl0ud9.github.io/2018/02/24/The-basic-knowledges-of-Android/The-basic-knowledges-of-Android/5.png">
-<meta property="og:image" content="https://cl0ud9.github.io/2018/02/24/The-basic-knowledges-of-Android/The-basic-knowledges-of-Android/6.png">
-<meta property="og:image" content="https://cl0ud9.github.io/2018/02/24/The-basic-knowledges-of-Android/The-basic-knowledges-of-Android/7.png">
-<meta property="og:image" content="https://cl0ud9.github.io/2018/02/24/The-basic-knowledges-of-Android/The-basic-knowledges-of-Android/8.png">
-<meta property="og:image" content="https://cl0ud9.github.io/2018/02/24/The-basic-knowledges-of-Android/The-basic-knowledges-of-Android/9.png">
-<meta property="og:image" content="https://cl0ud9.github.io/2018/02/24/The-basic-knowledges-of-Android/The-basic-knowledges-of-Android/10.png">
-<meta property="og:updated_time" content="2018-08-17T07:50:51.728Z">
+<meta property="og:image" content="https://cl0ud9.github.io/2018/08/17/The-basic-knowledges-of-Android/The-basic-knowledges-of-Android/1.png">
+<meta property="og:image" content="https://cl0ud9.github.io/2018/08/17/The-basic-knowledges-of-Android/2.png">
+<meta property="og:image" content="https://cl0ud9.github.io/2018/08/17/The-basic-knowledges-of-Android/3.png">
+<meta property="og:image" content="https://cl0ud9.github.io/2018/08/17/The-basic-knowledges-of-Android/4.png">
+<meta property="og:image" content="https://cl0ud9.github.io/2018/08/17/The-basic-knowledges-of-Android/5.png">
+<meta property="og:image" content="https://cl0ud9.github.io/2018/08/17/The-basic-knowledges-of-Android/6.png">
+<meta property="og:image" content="https://cl0ud9.github.io/2018/08/17/The-basic-knowledges-of-Android/7.png">
+<meta property="og:image" content="https://cl0ud9.github.io/2018/08/17/The-basic-knowledges-of-Android/8.png">
+<meta property="og:image" content="https://cl0ud9.github.io/2018/08/17/The-basic-knowledges-of-Android/9.png">
+<meta property="og:image" content="https://cl0ud9.github.io/2018/08/17/The-basic-knowledges-of-Android/10.png">
+<meta property="og:updated_time" content="2018-08-18T14:59:55.846Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="The Basic knowledges of Android">
-<meta name="twitter:description" content="#The Basic knowledges of Android 1.Android平台ELF文件格式   谷歌的Android操作系统内核采用Linux内核框架实现，所以Android平台原生文件格式与Linux可执行文件格式完全相似，同属于ELF类型文件。   Android平台下游戏逻辑通常使用C、C++语言实现，编译之后的可执行文件属于ELF文件格式 ELF文件格式：    ELF文件头描">
-<meta name="twitter:image" content="https://cl0ud9.github.io/2018/02/24/The-basic-knowledges-of-Android/The-basic-knowledges-of-Android/1.png">
+<meta name="twitter:description" content="#The Basic knowledges of Android 1.Android平台ELF文件格式  谷歌的Android操作系统内核采用Linux内核框架实现，所以Android平台原生文件格式与Linux可执行文件格式完全相似，同属于ELF类型文件。   Android平台下游戏逻辑通常使用C、C++语言实现，编译之后的可执行文件属于ELF文件格式  ELF文件格式：    ELF文件头描">
+<meta name="twitter:image" content="https://cl0ud9.github.io/2018/08/17/The-basic-knowledges-of-Android/The-basic-knowledges-of-Android/1.png">
 
 
 
@@ -167,7 +167,7 @@
 
 
 
-  <link rel="canonical" href="https://cl0ud9.github.io/2018/02/24/The-basic-knowledges-of-Android/"/>
+  <link rel="canonical" href="https://cl0ud9.github.io/2018/08/17/The-basic-knowledges-of-Android/"/>
 
 
 
@@ -303,7 +303,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cl0ud9.github.io/2018/02/24/The-basic-knowledges-of-Android/">
+    <link itemprop="mainEntityOfPage" href="https://cl0ud9.github.io/2018/08/17/The-basic-knowledges-of-Android/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Cl0ud9">
@@ -332,8 +332,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-24T20:21:10+08:00">
-                2018-02-24
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-17T16:05:17+08:00">
+                2018-08-17
               </time>
             
 
@@ -351,9 +351,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/02/24/The-basic-knowledges-of-Android/#comments" itemprop="discussionUrl">
+                <a href="/2018/08/17/The-basic-knowledges-of-Android/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/24/The-basic-knowledges-of-Android/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/08/17/The-basic-knowledges-of-Android/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -384,20 +384,20 @@
         <p>#<center><font color="#0099ff" face="行书" size="25"><em>The Basic knowledges of Android</em></font></center></p>
 <p></p><h2><font face="行书" color="#EE0000">1.Android平台ELF文件格式<p></p>
 <blockquote>
-</blockquote>
 <p>谷歌的Android操作系统内核采用Linux内核框架实现，所以Android平台原生文件格式与Linux可执行文件格式完全相似，同属于ELF类型文件。</p>
-<blockquote>
 </blockquote>
+<blockquote>
 <p>Android平台下游戏逻辑通常使用C、C++语言实现，编译之后的可执行文件属于ELF文件格式</p>
+</blockquote>
 <p></p><h3><font face="华文行楷" color="#050505">ELF文件格式：<p></p>
-<p><img src="The-basic-knowledges-of-Android/1.png" alt="Alt text"></p>
+<p><img src="/2018/08/17/The-basic-knowledges-of-Android/./The-basic-knowledges-of-Android/1.png"></p>
 <blockquote>
 </blockquote>
 <p>ELF文件头描述文件基本属性信息，包括ELF文件版本号、目标机器型号、程序入口、段表描述信息等信息。ELF文件头数据大小为0x34字节</p>
 <blockquote>
 </blockquote>
 <p>通过工具arm-linux-androideabi-readelf获取的ELF文件头数据如下：</p>
-<p><img src="The-basic-knowledges-of-Android/2.png" alt="Alt text"></p>
+<p><img src="/2018/08/17/The-basic-knowledges-of-Android/2.png" alt="Alt text"></p>
 <blockquote>
 <p>Magic：表示魔数标志信息，用来指明该文件是一个ELF目标文件，第一个字节固定为“7F”，后面三个字节为E、L、F字母的ASCII数值。同时魔数信息中还包含：版本信息、机器类型、文件类型等。</p>
 <p>Type：表明文件类型，“DYN”表示实例所使用的文件属于动态链接库文件。</p>
@@ -413,7 +413,7 @@
 <blockquote>
 <p>ELF文件程序头信息（program headers）是一个数据结构，每个数据结构描述一个段或者系统准备程序执行所需的其他信息，ELF文件的段（Segment）包含一个或者多个节区（Section）。ELF文件的段是为方便操作系统根据相同权限区段合并到一个段进行映射。</p>
 </blockquote>
-<p><img src="The-basic-knowledges-of-Android/3.png" alt="Alt text"></p>
+<p><img src="/2018/08/17/The-basic-knowledges-of-Android/3.png" alt="Alt text"></p>
 <blockquote>
 <p>每个段的FLg表示可获取到段对应的内存属性。实际上真正需要装载到内存中的只有类型为“LOAD”的段，即：只有第2个和第3个需要装载到内存中，并且还可以看到每一个段的起始文件偏移地址、起始内存偏移地址、段大小、段权限、段对齐方式等信息。</p>
 </blockquote>
@@ -421,7 +421,7 @@
 <blockquote>
 <p>从节表头信息可获取到每个节段名字、长度、内存和文件的相对偏移、链接器、编译器、装载器等信息。实例样本总共有21个阶段，其中“.text”属于出现频率非常高的节段，绝大部分代码编译之后存放于“.text”段中。</p>
 </blockquote>
-<p><img src="The-basic-knowledges-of-Android/4.png" alt="Alt text"></p>
+<p><img src="/2018/08/17/The-basic-knowledges-of-Android/4.png" alt="Alt text"></p>
 <blockquote>
 <p>ELF文件格式主要由以上介绍的三部分信息组成，分别为：ELF文件头、ELF程序头、ELF节表头。</p>
 </blockquote>
@@ -462,11 +462,11 @@
 <blockquote>
 <p>BLX：跳转到子程序执行可返回也可切换指令状态</p>
 </blockquote>
-<p><img src="The-basic-knowledges-of-Android/5.png" alt="Alt text"></p>
+<p><img src="/2018/08/17/The-basic-knowledges-of-Android/5.png" alt="Alt text"></p>
 <blockquote>
 <p>如果R2==R0 则跳转到0x1C04<br>这里指令为 BEQ loc_1C04 对应十六进制为:0B 00 00 0A二进制为：0000 1010 0000 0000 0000 0000 0000 1011<br>它的二进制解释图如下：</p>
 </blockquote>
-<p><img src="The-basic-knowledges-of-Android/6.png" alt="Alt text"></p>
+<p><img src="/2018/08/17/The-basic-knowledges-of-Android/6.png" alt="Alt text"></p>
 <blockquote>
 <p>Offset是目标地址与该指令的相对偏移（需要考虑到CPU的指令预读，以及左移两位，偏移是按4字节对齐的）</p>
 </blockquote>
@@ -474,7 +474,7 @@
 <p>Offset是1011，左移两位就是101100，也就是0x2C。当CPU执行到该指令时（0x1BD0处），PC应该指向0x1BD8，所以实际跳转地址就是0x1BD8+0x2C，也就是0x1C04</p>
 </blockquote>
 <p></p><h2><font face="行书"><font color="#EE0000">6.LDR/STR 指令：常用指令，用于向内存读/写数据<p></p>
-<p><img src="The-basic-knowledges-of-Android/7.png" alt="Alt text"></p>
+<p><img src="/2018/08/17/The-basic-knowledges-of-Android/7.png" alt="Alt text"></p>
 <blockquote>
 <p>对应十六进制：00 20 9C E5</p>
 </blockquote>
@@ -487,7 +487,7 @@
 <blockquote>
 <p>二进制解释图如下：</p>
 </blockquote>
-<p><img src="The-basic-knowledges-of-Android/8.png" alt="Alt text"></p>
+<p><img src="/2018/08/17/The-basic-knowledges-of-Android/8.png" alt="Alt text"></p>
 <blockquote>
 <p>Cond表示任何条件都可以（ARM7-TDMI-manual-pt2.pdf的4-5页）。</p>
 </blockquote>
@@ -513,7 +513,7 @@
 <p>Offset是0，表示基址寄存器需要加上0.</p>
 </blockquote>
 <p></p><h2><font face="行书"><font color="#EE0000">7.THUMB指令集<p></p>
-<p><img src="The-basic-knowledges-of-Android/9.png" alt="Alt text"></p>
+<p><img src="/2018/08/17/The-basic-knowledges-of-Android/9.png" alt="Alt text"></p>
 <blockquote>
 <p>State bit ：1为THUMB指令集，0为ARM指令集</p>
 </blockquote>
@@ -521,7 +521,7 @@
 <blockquote>
 <p>32位浮点数的二进制格式：</p>
 </blockquote>
-<p><img src="The-basic-knowledges-of-Android/10.png" alt="Alt text"></p>
+<p><img src="/2018/08/17/The-basic-knowledges-of-Android/10.png" alt="Alt text"></p>
 <blockquote>
 <p>S：符号位 0位正数，1为负数</p>
 </blockquote>
@@ -559,7 +559,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="https://cl0ud9.github.io/2018/02/24/The-basic-knowledges-of-Android/" title="The Basic knowledges of Android">https://cl0ud9.github.io/2018/02/24/The-basic-knowledges-of-Android/</a>
+    <a href="https://cl0ud9.github.io/2018/08/17/The-basic-knowledges-of-Android/" title="The Basic knowledges of Android">https://cl0ud9.github.io/2018/08/17/The-basic-knowledges-of-Android/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -587,15 +587,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/02/24/PHP-common-vulnerability-of-functions/" rel="next" title="PHP common vulnerability of functions">
+                <i class="fa fa-chevron-left"></i> PHP common vulnerability of functions
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/24/PHP-common-vulnerability-of-functions/" rel="prev" title="PHP common vulnerability of functions">
-                PHP common vulnerability of functions <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -766,11 +766,11 @@
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">1.Android平台ELF文件格式
 
-
 谷歌的Android操作系统内核采用Linux内核框架实现，所以Android平台原生文件格式与Linux可执行文件格式完全相似，同属于ELF类型文件。
 
 
 Android平台下游戏逻辑通常使用C、C++语言实现，编译之后的可执行文件属于ELF文件格式
+
 ELF文件格式：
 
 
@@ -2190,8 +2190,8 @@ Fraction：二进制小数位，即有效数字，从小数点往右开始。整
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://cl0ud9.github.io/2018/02/24/The-basic-knowledges-of-Android/';
-          this.page.identifier = '2018/02/24/The-basic-knowledges-of-Android/';
+          this.page.url = 'https://cl0ud9.github.io/2018/08/17/The-basic-knowledges-of-Android/';
+          this.page.identifier = '2018/08/17/The-basic-knowledges-of-Android/';
           this.page.title = 'The Basic knowledges of Android';
         };
         var d = document, s = d.createElement('script');
