@@ -288,6 +288,229 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://cl0ud9.github.io/2018/08/23/The-study-of-Ptrace-injection-technology/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cl0ud9">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome to Cl0ud9's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/23/The-study-of-Ptrace-injection-technology/" itemprop="url">Untitled</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-23T21:15:50+08:00">
+                2018-08-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/23/The-study-of-Ptrace-injection-technology/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/08/23/The-study-of-Ptrace-injection-technology/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<p>title: The study of Ptrace injection technology<br>date: 2018-08-23 21:15:49</p>
+<h2 id="tags-study"><a href="#tags-study" class="headerlink" title="tags: study"></a>tags: study</h2><p>#<center><font color="#0099ff" face="行书" size="25"><em>The study of Ptrace injection technology</em></font></center></p>
+<p></p><h1><center><font face="宋体" color=""><strong>Android系统采用的是Linux内核，很多Linux系统上的技术都可以应用在Android系统上，Android系统上ptrace注入远程进程的技术就是其中一种。</strong></font></center><p></p>
+<p></p><h3><font face="行书" color="#050505">Ⅰ.ptrace函数：<p></p>
+<blockquote>
+<p>ptrace函数为一个进程提供了监视和控制其他进程的方法，在注入进程后，父进程还可以读取和修改子进程的内存空间以及寄存器值。</p>
+</blockquote>
+<blockquote>
+<p>ptrace函数的原型如下所示，其中request参数为一个联合体，该参数决定了ptrace函数的行为，pid参数为远程进程的ID，addr参数与data参数在不同的request参数取值下表示不同的含义。</p>
+</blockquote>
+<figure class="highlight plain"><figcaption><span>ptrace(enum __ptrace_request request, pid_t pid, void *addr, void *data);```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;其中一部分request的参数：</span><br><span class="line"></span><br><span class="line">```PTRACE_ATTACH，表示附加到指定远程进程;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```PTRACE_GETREGS，表示读取远程进程当前寄存器环境</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```PTRACE_CONT，表示使远程进程继续运行</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```PTRACE_POKETEXT，往远程进程指定内存地址写入一个word大小的数据</span><br></pre></td></tr></table></figure>
+<p></p><h3><font face="行书" color="#050505">Ⅱ.Ptrace注入基本原理：<p></p>
+<blockquote>
+<p>将外部模块注入到所需进程中，执行模块的代码，从而对进程的代码和数据进行更改。<br>目前有两种基本的实现方式：</p>
+</blockquote>
+<blockquote>
+<p>1.使用Ptrace函数将shellcode注入到远程进程的内存空间中，然后通过执行shellcode加载模块代码。</p>
+</blockquote>
+<blockquote>
+<p>2.直接远程调用dlopen/dlsym等函数加载被注入的模块并执行代码。</p>
+</blockquote>
+<blockquote>
+<p>下图是ptrace注入的基本流程：</p>
+</blockquote>
+<p><img src="/2018/08/23/The-study-of-Ptrace-injection-technology/1.png" alt=""></p>
+<p></p><h3><font face="华文行楷" color="#050505"><br>1.利用ptrace函数attach到远程进程中：<p></p>
+<figure class="highlight plain"><figcaption><span>pid, NULL, NULL);```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt;PTRACE ATTACH为所调用的request的一个连接远程进程的参数，pid为远程进程的ID，这里addr和data参数均为NULL。</span><br><span class="line">当远程进程被trace后，进程的执行会被中断，此时父进程可以通过调用waitpid函数来判断远程进程是否进入暂停状态。</span><br><span class="line"></span><br><span class="line">&gt;waitpid函数原型：</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">```pid_twaitpid(pid_tpid,int*status,intoptions);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>其中当intopotions参数为WUNTRACED时，表示远程进程进入了暂停状态。</p>
+</blockquote>
+<p></p><h3><font face="华文行楷" color="#050505">2.读取和写入寄存器数据<p></p>
+<blockquote>
+<p>因为我们要注入自己的远程模块，并执行代码，所以在attach到对应进程后，需要先保存此时远程进程的所有寄存器的数据，以便在执行完远程模块代码后让原进程恢复执行原有的代码。</p>
+</blockquote>
+<blockquote>
+<p>同样调用ptrace函数的对应参数实现对寄存器数据的读取和保存。</p>
+</blockquote>
+<figure class="highlight plain"><figcaption><span>pid, NULL, regs);```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```ptrace(PTRACE_SETREGS, pid, NULL, regs);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>其中pid同样为远程进程的ID，此时data参数为regs为pt_regs结构的一个指针，远程进程的寄存器的数据将会存储到该结构中，pt_regs结构如下：</p>
+</blockquote>
+<figure class="highlight plain"><figcaption><span>pt_regs &#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> long uregs[18];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>ARM_cpsr uregs[16]```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```#define ARM_pc uregs[15]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>ARM_lr uregs[14]```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```#define ARM_sp uregs[13]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>ARM_ip uregs[12]```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```#define ARM_fp uregs[11]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>ARM_r10 uregs[10]```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```#define ARM_r9 uregs[9]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>ARM_r8 uregs[8]```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```#define ARM_r7 uregs[7]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>ARM_r6 uregs[6]```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```#define ARM_r5 uregs[5]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>ARM_r4 uregs[4]```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```#define ARM_r3 uregs[3]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>ARM_r2 uregs[2]```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```#define ARM_r1 uregs[1]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><figcaption><span>ARM_r0 uregs[0]```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```#define ARM_ORIG_r0 uregs[17]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>其中ARM_r0成员用于存储R0寄存器的值，函数调用后的返回值会存储在R0寄存器中，ARM_pc成员存储当前执行地址，ARM_sp成员存储当前栈顶地址，ARM_lr成员存储返回地址，ARM_cpsr成员存储状态寄存器的值。</p>
+</blockquote>
+<p></p><h3><font face="华文行楷" color="#050505">3.远程调用函数<p></p>
+<blockquote>
+<p>在ARM处理器中，调用函数的前四个参数为通过通用寄存器R0-R3来传递，剩余的参数为按顺序从右到左入栈来传递。</p>
+</blockquote>
+<blockquote>
+<p>远程函数调用的时候必须要首先判断所用函数的参数个数，若小于四个参数则自动进入R0-R3寄存器，如果大于四个则要修改寄存器SP的值，在栈中分配栈空间，将剩余的参数压栈。<br>在写入函数参数后，还要修改PC寄存器2.程序计数器即PC寄存器(R15)：为函数的执行地址，表示接下来要执行写入的函数。</p>
+</blockquote>
+<blockquote>
+<p>在ptrace注入的过程中会多次调用ptrace函数，因此要调用mmap函数在远程进程地址空间分配内存，并用dlopen函数来加载远程注入模块，dlsym获取远程注入模块的函数地址，dlclose来关闭注入的模块。</p>
+</blockquote>
+<blockquote>
+<p>各系统函数在远程进程中的位置：</p>
+</blockquote>
+<p></p><h4><font face="华文行楷" color="#EE0000">mmap函数是在”/system/lib/libc.so”模块中，dlopen、dlsym与dlclose函数均是在”/system/bin/linker”模块中，读取/proc/pid/maps可以获得系统模块在本地和远程的基地址，如果要获取远程函数在内存中的虚拟地址，则需要在本地计算出函数对应的偏移地址，然后再用远程模块对应的基地址加上该偏移地址得到远程进程中对应函数的虚拟地址。<p></p>
+<p></p><h3><font face="华文行楷" color="#050505">4.恢复原寄存器的值<p></p>
+<blockquote>
+<p>在从远程进程detach前，必须要恢复所有寄存器的环境，保证原有的进程不会被破坏，从而可以继续运行。</p>
+</blockquote>
+<p></p><h3><font face="华文行楷" color="#050505">5.脱离远程进程<p></p>
+<blockquote>
+<p>在ptrace注入的最后需要从被注入进程脱离，使用detach，脱离后被注入进程会继续运行。</p>
+</blockquote>
+<p><code>ptrace(PTRACE_DETACH, pid, NULL, 0);</code></p>
+<p></p><h3><font face="行书" color="#050505">Ⅲ.反Ptrace注入检测及应对：<p></p>
+<p></p><h3><font face="华文行楷" color="#050505">检测机制：<p></p>
+<blockquote>
+<p>当一个程序被Ptrace后他的Status文件中的TraceID字段会被标识自己被那个进程Trace，所以这个值是可以在程序运行时检测的，当检测到该值不会0的时候就会自动终止程序，导致无法进行调试。</p>
+</blockquote>
+<p></p><h3><font face="华文行楷" color="#050505">一种应对方式：<p></p>
+<blockquote>
+<p>一般检测该值得机制是在.SO文件执行之前的JNI_OnLoad函数中进行判断，所以只需动态调试该函数，发现其检测机制然后修改绕过即可，具体方法视具体情况变化。</p>
+</blockquote>
+<p></p><h2><font face="行书"><center>The end <p></p>
+</center></font></h2></font></h3></font></h3></font></h3></font></h3></font></h3></font></h4></font></h3></font></h3></font></h3></font></h3></font></h3></h1>
+          
+        
+      
+    </div>
+    
+    
+    
+    <div>
+     
+    </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://cl0ud9.github.io/2018/08/17/The-basic-knowledges-of-Android/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -809,7 +1032,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
