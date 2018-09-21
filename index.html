@@ -288,7 +288,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cl0ud9.github.io/2018/08/23/The-study-of-Ptrace-injection-technology/">
+    <link itemprop="mainEntityOfPage" href="https://cl0ud9.github.io/2018/09/21/The-study-of-Ptrace-injection-technology/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Cl0ud9">
@@ -307,7 +307,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/23/The-study-of-Ptrace-injection-technology/" itemprop="url">Untitled</a></h1>
+                <a class="post-title-link" href="/2018/09/21/The-study-of-Ptrace-injection-technology/" itemprop="url">The study of Ptrace injection technology</a></h1>
         
 
         <div class="post-meta">
@@ -319,8 +319,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-23T21:15:50+08:00">
-                2018-08-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-21T21:05:17+08:00">
+                2018-09-21
               </time>
             
 
@@ -338,9 +338,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/08/23/The-study-of-Ptrace-injection-technology/#comments" itemprop="discussionUrl">
+                <a href="/2018/09/21/The-study-of-Ptrace-injection-technology/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/08/23/The-study-of-Ptrace-injection-technology/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/09/21/The-study-of-Ptrace-injection-technology/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -370,9 +370,7 @@
       
         
           
-            <hr>
-<p>title: The study of Ptrace injection technology<br>date: 2018-08-23 21:15:49</p>
-<h2 id="tags-study"><a href="#tags-study" class="headerlink" title="tags: study"></a>tags: study</h2><p>#<center><font color="#0099ff" face="行书" size="25"><em>The study of Ptrace injection technology</em></font></center></p>
+            <p>#<center><font color="#0099ff" face="行书" size="25"><em>The study of Ptrace injection technology</em></font></center></p>
 <p></p><h1><center><font face="宋体" color=""><strong>Android系统采用的是Linux内核，很多Linux系统上的技术都可以应用在Android系统上，Android系统上ptrace注入远程进程的技术就是其中一种。</strong></font></center><p></p>
 <p></p><h3><font face="行书" color="#050505">Ⅰ.ptrace函数：<p></p>
 <blockquote>
@@ -398,7 +396,7 @@
 <blockquote>
 <p>下图是ptrace注入的基本流程：</p>
 </blockquote>
-<p><img src="/2018/08/23/The-study-of-Ptrace-injection-technology/1.png" alt=""></p>
+<p><img src="/2018/09/21/The-study-of-Ptrace-injection-technology/1.png" alt=""></p>
 <p></p><h3><font face="华文行楷" color="#050505"><br>1.利用ptrace函数attach到远程进程中：<p></p>
 <figure class="highlight plain"><figcaption><span>pid, NULL, NULL);```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt;PTRACE ATTACH为所调用的request的一个连接远程进程的参数，pid为远程进程的ID，这里addr和data参数均为NULL。</span><br><span class="line">当远程进程被trace后，进程的执行会被中断，此时父进程可以通过调用waitpid函数来判断远程进程是否进入暂停状态。</span><br><span class="line"></span><br><span class="line">&gt;waitpid函数原型：</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">```pid_twaitpid(pid_tpid,int*status,intoptions);</span><br></pre></td></tr></table></figure>
 <blockquote>

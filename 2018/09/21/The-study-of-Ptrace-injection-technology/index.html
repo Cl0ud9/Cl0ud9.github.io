@@ -99,7 +99,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="study," />
 
 
 
@@ -115,19 +115,20 @@
 
 
 
-<meta name="description" content="title: The study of Ptrace injection technologydate: 2018-08-23 21:15:49 tags: study#The study of Ptrace injection technology Android系统采用的是Linux内核，很多Linux系统上的技术都可以应用在Android系统上，Android系统上ptrace注入远程进程">
+<meta name="description" content="#The study of Ptrace injection technology Android系统采用的是Linux内核，很多Linux系统上的技术都可以应用在Android系统上，Android系统上ptrace注入远程进程的技术就是其中一种。 Ⅰ.ptrace函数：  ptrace函数为一个进程提供了监视和控制其他进程的方法，在注入进程后，父进程还可以读取和修改子进程的内存空间以及寄存器值">
+<meta name="keywords" content="study">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Welcome to Cl0ud9&#39;s blog">
-<meta property="og:url" content="https://cl0ud9.github.io/2018/08/23/The-study-of-Ptrace-injection-technology/index.html">
+<meta property="og:title" content="The study of Ptrace injection technology">
+<meta property="og:url" content="https://cl0ud9.github.io/2018/09/21/The-study-of-Ptrace-injection-technology/index.html">
 <meta property="og:site_name" content="Welcome to Cl0ud9&#39;s blog">
-<meta property="og:description" content="title: The study of Ptrace injection technologydate: 2018-08-23 21:15:49 tags: study#The study of Ptrace injection technology Android系统采用的是Linux内核，很多Linux系统上的技术都可以应用在Android系统上，Android系统上ptrace注入远程进程">
+<meta property="og:description" content="#The study of Ptrace injection technology Android系统采用的是Linux内核，很多Linux系统上的技术都可以应用在Android系统上，Android系统上ptrace注入远程进程的技术就是其中一种。 Ⅰ.ptrace函数：  ptrace函数为一个进程提供了监视和控制其他进程的方法，在注入进程后，父进程还可以读取和修改子进程的内存空间以及寄存器值">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://cl0ud9.github.io/2018/08/23/The-study-of-Ptrace-injection-technology/1.png">
-<meta property="og:updated_time" content="2018-08-25T14:35:48.998Z">
+<meta property="og:image" content="https://cl0ud9.github.io/2018/09/21/The-study-of-Ptrace-injection-technology/1.png">
+<meta property="og:updated_time" content="2018-09-21T14:07:49.821Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Welcome to Cl0ud9&#39;s blog">
-<meta name="twitter:description" content="title: The study of Ptrace injection technologydate: 2018-08-23 21:15:49 tags: study#The study of Ptrace injection technology Android系统采用的是Linux内核，很多Linux系统上的技术都可以应用在Android系统上，Android系统上ptrace注入远程进程">
-<meta name="twitter:image" content="https://cl0ud9.github.io/2018/08/23/The-study-of-Ptrace-injection-technology/1.png">
+<meta name="twitter:title" content="The study of Ptrace injection technology">
+<meta name="twitter:description" content="#The study of Ptrace injection technology Android系统采用的是Linux内核，很多Linux系统上的技术都可以应用在Android系统上，Android系统上ptrace注入远程进程的技术就是其中一种。 Ⅰ.ptrace函数：  ptrace函数为一个进程提供了监视和控制其他进程的方法，在注入进程后，父进程还可以读取和修改子进程的内存空间以及寄存器值">
+<meta name="twitter:image" content="https://cl0ud9.github.io/2018/09/21/The-study-of-Ptrace-injection-technology/1.png">
 
 
 
@@ -157,13 +158,13 @@
 
 
 
-  <link rel="canonical" href="https://cl0ud9.github.io/2018/08/23/The-study-of-Ptrace-injection-technology/"/>
+  <link rel="canonical" href="https://cl0ud9.github.io/2018/09/21/The-study-of-Ptrace-injection-technology/"/>
 
 
 
 
 
-  <title> | Welcome to Cl0ud9's blog</title>
+  <title>The study of Ptrace injection technology | Welcome to Cl0ud9's blog</title>
   
 
 
@@ -293,7 +294,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cl0ud9.github.io/2018/08/23/The-study-of-Ptrace-injection-technology/">
+    <link itemprop="mainEntityOfPage" href="https://cl0ud9.github.io/2018/09/21/The-study-of-Ptrace-injection-technology/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Cl0ud9">
@@ -310,7 +311,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">The study of Ptrace injection technology</h1>
         
 
         <div class="post-meta">
@@ -322,8 +323,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-23T21:15:50+08:00">
-                2018-08-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-21T21:05:17+08:00">
+                2018-09-21
               </time>
             
 
@@ -341,9 +342,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/08/23/The-study-of-Ptrace-injection-technology/#comments" itemprop="discussionUrl">
+                <a href="/2018/09/21/The-study-of-Ptrace-injection-technology/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/08/23/The-study-of-Ptrace-injection-technology/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/09/21/The-study-of-Ptrace-injection-technology/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -371,9 +372,7 @@
       
 
       
-        <hr>
-<p>title: The study of Ptrace injection technology<br>date: 2018-08-23 21:15:49</p>
-<h2 id="tags-study"><a href="#tags-study" class="headerlink" title="tags: study"></a>tags: study</h2><p>#<center><font color="#0099ff" face="行书" size="25"><em>The study of Ptrace injection technology</em></font></center></p>
+        <p>#<center><font color="#0099ff" face="行书" size="25"><em>The study of Ptrace injection technology</em></font></center></p>
 <p></p><h1><center><font face="宋体" color=""><strong>Android系统采用的是Linux内核，很多Linux系统上的技术都可以应用在Android系统上，Android系统上ptrace注入远程进程的技术就是其中一种。</strong></font></center><p></p>
 <p></p><h3><font face="行书" color="#050505">Ⅰ.ptrace函数：<p></p>
 <blockquote>
@@ -399,7 +398,7 @@
 <blockquote>
 <p>下图是ptrace注入的基本流程：</p>
 </blockquote>
-<p><img src="/2018/08/23/The-study-of-Ptrace-injection-technology/1.png" alt=""></p>
+<p><img src="/2018/09/21/The-study-of-Ptrace-injection-technology/1.png" alt=""></p>
 <p></p><h3><font face="华文行楷" color="#050505"><br>1.利用ptrace函数attach到远程进程中：<p></p>
 <figure class="highlight plain"><figcaption><span>pid, NULL, NULL);```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt;PTRACE ATTACH为所调用的request的一个连接远程进程的参数，pid为远程进程的ID，这里addr和data参数均为NULL。</span><br><span class="line">当远程进程被trace后，进程的执行会被中断，此时父进程可以通过调用waitpid函数来判断远程进程是否进入暂停状态。</span><br><span class="line"></span><br><span class="line">&gt;waitpid函数原型：</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">```pid_twaitpid(pid_tpid,int*status,intoptions);</span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -490,7 +489,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="https://cl0ud9.github.io/2018/08/23/The-study-of-Ptrace-injection-technology/" title="">https://cl0ud9.github.io/2018/08/23/The-study-of-Ptrace-injection-technology/</a>
+    <a href="https://cl0ud9.github.io/2018/09/21/The-study-of-Ptrace-injection-technology/" title="The study of Ptrace injection technology">https://cl0ud9.github.io/2018/09/21/The-study-of-Ptrace-injection-technology/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -502,6 +501,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/study/" rel="tag"># study</a>
+          
+        </div>
       
 
       
@@ -689,7 +694,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tags-study"><span class="nav-number">1.</span> <span class="nav-text">tags: study</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">Android系统采用的是Linux内核，很多Linux系统上的技术都可以应用在Android系统上，Android系统上ptrace注入远程进程的技术就是其中一种。
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">Android系统采用的是Linux内核，很多Linux系统上的技术都可以应用在Android系统上，Android系统上ptrace注入远程进程的技术就是其中一种。
 Ⅰ.ptrace函数：
 
 ptrace函数为一个进程提供了监视和控制其他进程的方法，在注入进程后，父进程还可以读取和修改子进程的内存空间以及寄存器值。
@@ -777,7 +782,7 @@ ptrace(PTRACE_DETACH, pid, NULL, 0);
 一般检测该值得机制是在.SO文件执行之前的JNI_OnLoad函数中进行判断，所以只需动态调试该函数，发现其检测机制然后修改绕过即可，具体方法视具体情况变化。
 
 The end 
-</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">0.1.</span> <span class="nav-text">Ⅰ.ptrace函数：
+</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.1.</span> <span class="nav-text">Ⅰ.ptrace函数：
 
 ptrace函数为一个进程提供了监视和控制其他进程的方法，在注入进程后，父进程还可以读取和修改子进程的内存空间以及寄存器值。
 
@@ -864,7 +869,7 @@ ptrace(PTRACE_DETACH, pid, NULL, 0);
 一般检测该值得机制是在.SO文件执行之前的JNI_OnLoad函数中进行判断，所以只需动态调试该函数，发现其检测机制然后修改绕过即可，具体方法视具体情况变化。
 
 The end 
-</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">0.2.</span> <span class="nav-text">Ⅱ.Ptrace注入基本原理：
+</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.2.</span> <span class="nav-text">Ⅱ.Ptrace注入基本原理：
 
 将外部模块注入到所需进程中，执行模块的代码，从而对进程的代码和数据进行更改。目前有两种基本的实现方式：
 
@@ -940,7 +945,7 @@ ptrace(PTRACE_DETACH, pid, NULL, 0);
 一般检测该值得机制是在.SO文件执行之前的JNI_OnLoad函数中进行判断，所以只需动态调试该函数，发现其检测机制然后修改绕过即可，具体方法视具体情况变化。
 
 The end 
-</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">0.3.</span> <span class="nav-text">1.利用ptrace函数attach到远程进程中：
+</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.3.</span> <span class="nav-text">1.利用ptrace函数attach到远程进程中：
 pid, NULL, NULL);```12345678&gt;PTRACE ATTACH为所调用的request的一个连接远程进程的参数，pid为远程进程的ID，这里addr和data参数均为NULL。当远程进程被trace后，进程的执行会被中断，此时父进程可以通过调用waitpid函数来判断远程进程是否进入暂停状态。&gt;waitpid函数原型：```pid_twaitpid(pid_tpid,int*status,intoptions);
 
 其中当intopotions参数为WUNTRACED时，表示远程进程进入了暂停状态。
@@ -1002,7 +1007,7 @@ ptrace(PTRACE_DETACH, pid, NULL, 0);
 一般检测该值得机制是在.SO文件执行之前的JNI_OnLoad函数中进行判断，所以只需动态调试该函数，发现其检测机制然后修改绕过即可，具体方法视具体情况变化。
 
 The end 
-</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">0.4.</span> <span class="nav-text">2.读取和写入寄存器数据
+</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.4.</span> <span class="nav-text">2.读取和写入寄存器数据
 
 因为我们要注入自己的远程模块，并执行代码，所以在attach到对应进程后，需要先保存此时远程进程的所有寄存器的数据，以便在执行完远程模块代码后让原进程恢复执行原有的代码。
 
@@ -1059,7 +1064,7 @@ ptrace(PTRACE_DETACH, pid, NULL, 0);
 一般检测该值得机制是在.SO文件执行之前的JNI_OnLoad函数中进行判断，所以只需动态调试该函数，发现其检测机制然后修改绕过即可，具体方法视具体情况变化。
 
 The end 
-</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">0.5.</span> <span class="nav-text">3.远程调用函数
+</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.5.</span> <span class="nav-text">3.远程调用函数
 
 在ARM处理器中，调用函数的前四个参数为通过通用寄存器R0-R3来传递，剩余的参数为按顺序从右到左入栈来传递。
 
@@ -1092,7 +1097,7 @@ ptrace(PTRACE_DETACH, pid, NULL, 0);
 一般检测该值得机制是在.SO文件执行之前的JNI_OnLoad函数中进行判断，所以只需动态调试该函数，发现其检测机制然后修改绕过即可，具体方法视具体情况变化。
 
 The end 
-</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">0.5.1.</span> <span class="nav-text">mmap函数是在”/system/lib/libc.so”模块中，dlopen、dlsym与dlclose函数均是在”/system/bin/linker”模块中，读取/proc/pid/maps可以获得系统模块在本地和远程的基地址，如果要获取远程函数在内存中的虚拟地址，则需要在本地计算出函数对应的偏移地址，然后再用远程模块对应的基地址加上该偏移地址得到远程进程中对应函数的虚拟地址。
+</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.5.1.</span> <span class="nav-text">mmap函数是在”/system/lib/libc.so”模块中，dlopen、dlsym与dlclose函数均是在”/system/bin/linker”模块中，读取/proc/pid/maps可以获得系统模块在本地和远程的基地址，如果要获取远程函数在内存中的虚拟地址，则需要在本地计算出函数对应的偏移地址，然后再用远程模块对应的基地址加上该偏移地址得到远程进程中对应函数的虚拟地址。
 4.恢复原寄存器的值
 
 在从远程进程detach前，必须要恢复所有寄存器的环境，保证原有的进程不会被破坏，从而可以继续运行。
@@ -1112,7 +1117,7 @@ ptrace(PTRACE_DETACH, pid, NULL, 0);
 一般检测该值得机制是在.SO文件执行之前的JNI_OnLoad函数中进行判断，所以只需动态调试该函数，发现其检测机制然后修改绕过即可，具体方法视具体情况变化。
 
 The end 
-</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">0.6.</span> <span class="nav-text">4.恢复原寄存器的值
+</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.6.</span> <span class="nav-text">4.恢复原寄存器的值
 
 在从远程进程detach前，必须要恢复所有寄存器的环境，保证原有的进程不会被破坏，从而可以继续运行。
 
@@ -1131,7 +1136,7 @@ ptrace(PTRACE_DETACH, pid, NULL, 0);
 一般检测该值得机制是在.SO文件执行之前的JNI_OnLoad函数中进行判断，所以只需动态调试该函数，发现其检测机制然后修改绕过即可，具体方法视具体情况变化。
 
 The end 
-</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">0.7.</span> <span class="nav-text">5.脱离远程进程
+</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.7.</span> <span class="nav-text">5.脱离远程进程
 
 在ptrace注入的最后需要从被注入进程脱离，使用detach，脱离后被注入进程会继续运行。
 
@@ -1146,7 +1151,7 @@ ptrace(PTRACE_DETACH, pid, NULL, 0);
 一般检测该值得机制是在.SO文件执行之前的JNI_OnLoad函数中进行判断，所以只需动态调试该函数，发现其检测机制然后修改绕过即可，具体方法视具体情况变化。
 
 The end 
-</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">0.8.</span> <span class="nav-text">Ⅲ.反Ptrace注入检测及应对：
+</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.8.</span> <span class="nav-text">Ⅲ.反Ptrace注入检测及应对：
 检测机制：
 
 当一个程序被Ptrace后他的Status文件中的TraceID字段会被标识自己被那个进程Trace，所以这个值是可以在程序运行时检测的，当检测到该值不会0的时候就会自动终止程序，导致无法进行调试。
@@ -1156,7 +1161,7 @@ The end
 一般检测该值得机制是在.SO文件执行之前的JNI_OnLoad函数中进行判断，所以只需动态调试该函数，发现其检测机制然后修改绕过即可，具体方法视具体情况变化。
 
 The end 
-</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">0.9.</span> <span class="nav-text">检测机制：
+</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.9.</span> <span class="nav-text">检测机制：
 
 当一个程序被Ptrace后他的Status文件中的TraceID字段会被标识自己被那个进程Trace，所以这个值是可以在程序运行时检测的，当检测到该值不会0的时候就会自动终止程序，导致无法进行调试。
 
@@ -1165,13 +1170,13 @@ The end
 一般检测该值得机制是在.SO文件执行之前的JNI_OnLoad函数中进行判断，所以只需动态调试该函数，发现其检测机制然后修改绕过即可，具体方法视具体情况变化。
 
 The end 
-</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">0.10.</span> <span class="nav-text">一种应对方式：
+</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.10.</span> <span class="nav-text">一种应对方式：
 
 一般检测该值得机制是在.SO文件执行之前的JNI_OnLoad函数中进行判断，所以只需动态调试该函数，发现其检测机制然后修改绕过即可，具体方法视具体情况变化。
 
 The end 
-</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">The end 
-</span></a></li></ol></div>
+</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.</span> <span class="nav-text">The end 
+</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1336,9 +1341,9 @@ The end
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://cl0ud9.github.io/2018/08/23/The-study-of-Ptrace-injection-technology/';
-          this.page.identifier = '2018/08/23/The-study-of-Ptrace-injection-technology/';
-          this.page.title = '';
+          this.page.url = 'https://cl0ud9.github.io/2018/09/21/The-study-of-Ptrace-injection-technology/';
+          this.page.identifier = '2018/09/21/The-study-of-Ptrace-injection-technology/';
+          this.page.title = 'The study of Ptrace injection technology';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://Cl0ud9.disqus.com/embed.js';
